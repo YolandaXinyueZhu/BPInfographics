@@ -66,4 +66,4 @@ empty_batch_df <- data.frame(id_file = NA,
                              today_date = NA,
                              today_act_score = NA,
                              previous_date = NA,
-                             previous_act_score = NA)
+                             previous_bp_score = NA)

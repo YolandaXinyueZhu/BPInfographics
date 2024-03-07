@@ -3,7 +3,7 @@ library(stringr)
 is_row_valid <- function(data_row) {
   # re-cast as numeric since single digits seems to have a leading space in them
   data_row[['today_act_score']] <- as.numeric(data_row[['today_act_score']])
-  data_row[['previous_act_score']] <- as.numeric(data_row[['previous_act_score']])
+  data_row[['previous_bp_score']] <- as.numeric(data_row[['previous_bp_score']])
   
   if (is.na(data_row[['display_name']])) {
     return(list(bool = FALSE,
@@ -66,7 +66,7 @@ is_row_valid <- function(data_row) {
     )
   }
   
-  if (!is.na(data_row[['previous_act_score']]) & !data_row[['previous_act_score']] %in% 5:25) {
+  if (!is.na(data_row[['previous_bp_score']]) & !data_row[['previous_bp_score']] %in% 5:25) {
     #print(data_row)
     #print("previous score out of range")
     return(list(bool = FALSE,

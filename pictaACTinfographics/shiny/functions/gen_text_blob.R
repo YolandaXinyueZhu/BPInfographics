@@ -35,29 +35,29 @@ gen_asthma_interpretive_statement_blob <- function(today_act_score, language) {
   }
 }
 
-gen_asthma_progress_statment <- function(today_act_score, previous_act_score, language) {
-  if (previous_act_score - today_act_score >= 3) {
+gen_asthma_progress_statment <- function(today_act_score, previous_bp_score, language) {
+  if (previous_bp_score - today_act_score >= 3) {
     if (language == "spanish") {
       return("Ha empeorado desde su \u00faltima visita.")
     } else {
       return("It has gotten worse since your last visit.")
     }
-  } else if (today_act_score <= 19 && abs(previous_act_score - today_act_score) <= 2) {
+  } else if (today_act_score <= 19 && abs(previous_bp_score - today_act_score) <= 2) {
     if (language == "spanish") {
       return("Sigue igual que desde su \u00faltima visita.")
     } else {
       return("It is about the same as at your last visit.")
     }
-  } else if (today_act_score >= 20 && previous_act_score <= 19) {
+  } else if (today_act_score >= 20 && previous_bp_score <= 19) {
     if (language == "spanish") {
       return("\u00a1Muy bien!")
     } else {
       return("Great job!")
     }
   } else if (today_act_score >= 20 &&
-             (today_act_score - previous_act_score >= 0 || previous_act_score - today_act_score >= 2)) {
+             (today_act_score - previous_bp_score >= 0 || previous_bp_score - today_act_score >= 2)) {
     return("")
-  } else if (today_act_score <= 19 && today_act_score - previous_act_score >= 3) {
+  } else if (today_act_score <= 19 && today_act_score - previous_bp_score >= 3) {
     if (language == "spanish") {
       return("\u00a1Ha habido mejora!")
     } else {

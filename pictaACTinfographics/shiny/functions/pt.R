@@ -1,6 +1,6 @@
 gen_pt_info <- function(display_name, language,
                         today_date, today_act_score,
-                        previous_date, previous_act_score) {
+                        previous_date, previous_bp_score) {
   pt_values_asthma <- list(
     language = language,
     name = display_name,
@@ -8,7 +8,7 @@ gen_pt_info <- function(display_name, language,
     today_act = today_act_score,
     today_date = today_date,
     today_date_text = NA,
-    previous_act = previous_act_score,
+    previous_bp = previous_bp_score,
     previous_date = previous_date,
     previous_date_text = NA,
     asthma_interpretive_statement = NA,
@@ -16,14 +16,14 @@ gen_pt_info <- function(display_name, language,
     asthma_progress_statment = NA
   )
   
-  if (is.na(pt_values_asthma$previous_act)) {
+  if (is.na(pt_values_asthma$previous_bp)) {
     pt_values_asthma$previous_date_text <- ""
     pt_values_asthma$asthma_progress_statment <- ""
   } else {
     previous_date_date <- as.Date(pt_values_asthma$previous_date)
     pt_values_asthma$previous_date_text <- strftime(previous_date_date, "%m/%d/%y")
     pt_values_asthma$asthma_progress_statment <- gen_asthma_progress_statment(pt_values_asthma$today_act,
-                                                                              pt_values_asthma$previous_act,
+                                                                              pt_values_asthma$previous_bp,
                                                                               pt_values_asthma$language)
   }
   

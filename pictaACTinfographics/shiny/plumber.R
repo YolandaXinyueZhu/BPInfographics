@@ -1,8 +1,8 @@
 # example CURL call:
-# curl -X POST "http://127.0.0.1:8000/gen_image?language=english&today_act=25&today_date=2022-08-21&previous_act=5&previous_date=2021-07-14" -H "accept: image/png" -H "Content-Type: application/json" -d "{\"dummy_data\":[{\"x\":0,\"y\":0},{\"x\":100,\"y\":100}]}"
+# curl -X POST "http://127.0.0.1:8000/gen_image?language=english&today_act=25&today_date=2022-08-21&previous_bp=5&previous_date=2021-07-14" -H "accept: image/png" -H "Content-Type: application/json" -d "{\"dummy_data\":[{\"x\":0,\"y\":0},{\"x\":100,\"y\":100}]}"
 #
 # example Request URL:
-# http://127.0.0.1:8000/gen_image?language=english&today_act=25&today_date=2022-08-21&previous_act=5&previous_date=2021-07-14
+# http://127.0.0.1:8000/gen_image?language=english&today_act=25&today_date=2022-08-21&previous_bp=5&previous_date=2021-07-14
 
 source("global.R")
 
@@ -82,7 +82,7 @@ gen_image_acq <- function(
 #* @param display_name Name of patient, defaults to ""
 #* @param today_act Current ACT score
 #* @param today_date Current date for ACT score, YYYY-MM-DD
-#* @param previous_act Previous ACT score
+#* @param previous_bp Previous ACT score
 #* @param previous_date Previous date for ACT score, YYYY-MM-DD
 #* @param dummy_data Empty R dataframe to draw the ggplot2 canvas
 #* 
@@ -93,13 +93,13 @@ gen_image_act <- function(
   display_name = "",
   today_act = 25,
   today_date = "2022-08-21",
-  previous_act = 5,
+  previous_bp = 5,
   previous_date = "2021-07-14",
   dummy_data = dummy
 ) {
 
   today_act <- as.integer(today_act)
-  previous_act <- as.integer(previous_act)
+  previous_bp <- as.integer(previous_bp)
 
   # patient info -----
   print(glue::glue(
@@ -111,7 +111,7 @@ gen_image_act <- function(
     today_date = today_date,
     today_act_score = today_act,
     previous_date = previous_date,
-    previous_act_score = previous_act
+    previous_bp_score = previous_bp
   )
 
   # plot info -----
@@ -143,7 +143,7 @@ gen_image_act <- function(
   arrow_g <- geom_score_arrows(
     base_g = base_g,
     today_act = pt_info$today_act,
-    previous_act = pt_info$previous_act,
+    previous_bp = pt_info$previous_bp,
     previous_date = pt_info$previous_date_text,
     language = pt_info$language,
     x_breaks = plot_info$arrow_x_all

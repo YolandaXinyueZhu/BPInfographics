@@ -69,7 +69,7 @@ geom_score_arrows_acq <- function(
         geom_previous_score_value(x = x_breaks[previous_acq_i],
                                   y = previous_value_y,
                                   # the act text here is correct, it's legacy param name
-                                  previous_act_score = previous_acq_string) +
+                                  previous_bp_score = previous_acq_string) +
         geom_previous_score_date(x = x_breaks[previous_acq_i],
                                  y = acq_arrow_values$previous_score_today_text_label_y,
                                  language = language,
@@ -85,7 +85,7 @@ geom_score_arrows_acq <- function(
                                       yend = previous_arrow_yend)) +
         geom_previous_score_value(x = x_breaks[previous_acq_i],
                                   y = previous_value_y,
-                                  previous_act_score = previous_acq) +
+                                  previous_bp_score = previous_acq) +
         geom_previous_score_date(x = x_breaks[previous_acq_i],
                                  y = acq_arrow_values$previous_score_today_text_label_y,
                                  language = language,

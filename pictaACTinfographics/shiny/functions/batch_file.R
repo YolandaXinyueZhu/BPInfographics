@@ -15,7 +15,7 @@ read_batch_file_excel <- function(pth) {
                                    ,"numeric" # previous_year
                                    ,"numeric" # previous_month
                                    ,"numeric" # previous_day
-                                   ,"numeric" # previous_act_score
+                                   ,"numeric" # previous_bp_score
                                  ))
   batch_df <- batch_df %>%
     dplyr::mutate(today_date = lubridate::make_date(today_year, today_month, today_day),
@@ -36,7 +36,7 @@ validate_batch_file <- function(dat) {
   #dat$reason[problem_rows] <- "readr error"
   
   dat <- dat %>%
-    dplyr::select(reason, display_name, language, today_date, today_act_score, previous_date, previous_act_score, everything())
+    dplyr::select(reason, display_name, language, today_date, today_act_score, previous_date, previous_bp_score, everything())
   return(dat)
 }
 

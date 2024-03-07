@@ -6,7 +6,7 @@ gen_single_params <- function(row_dat) {
     display_name = row_dat$display_name,
     today_act = row_dat$today_act_score,
     today_date = row_dat$today_date,
-    previous_act = row_dat$previous_act_score,
+    previous_bp = row_dat$previous_bp_score,
     previous_date = row_dat$previous_date
   )
   #print(current_pt_info)
@@ -17,7 +17,7 @@ gen_single_params <- function(row_dat) {
     today_date = current_pt_info$today_date,
     today_act_score = current_pt_info$today_act,
     previous_date = current_pt_info$previous_date,
-    previous_act_score = current_pt_info$previous_act
+    previous_bp_score = current_pt_info$previous_bp
   )
   
   pt_info$pdf_name <- glue::glue("act-{pt_info$language}-{pt_info$display_name}-{row_dat$id_file}-{pt_info$today_date}.pdf")
@@ -70,7 +70,7 @@ gen_single_env <- function(single_params) {
   return(e)
 }
 
-gen_figure <- function(language, png_url, today_act, previous_act, previous_date_text) {
+gen_figure <- function(language, png_url, today_act, previous_bp, previous_date_text) {
   
   arrow_x_all <- gen_x_coords(language)
   
@@ -81,7 +81,7 @@ gen_figure <- function(language, png_url, today_act, previous_act, previous_date
   
   arrow_g <- geom_score_arrows(base_g = base_g,
                                today_act = today_act,
-                               previous_act = previous_act,
+                               previous_bp = previous_bp,
                                previous_date = previous_date_text,
                                language = language,
                                x_breaks = arrow_x_all)
@@ -100,7 +100,7 @@ gen_pdf_from_single_row <- function(row_dat, pdf_dir) {
   arrow_g <- gen_figure(language = row_pt_info$language,
                         png_url = row_pt_info$png_url,
                         today_act = row_pt_info$today_act,
-                        previous_act = row_pt_info$previous_act,
+                        previous_bp = row_pt_info$previous_bp,
                         previous_date_text = row_pt_info$previous_date_text)
   print(glue::glue("Saving figure to: {knit_env$plot_pth_norm}"))
   ggplot2::ggsave(filename = knit_env$plot_pth_norm,

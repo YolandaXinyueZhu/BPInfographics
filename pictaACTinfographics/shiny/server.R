@@ -10,7 +10,7 @@ server <- function(input, output, session) {
       today_act = input$today_act,
       today_date = input$today_date,
       today_date_text = NA,
-      previous_act = input$previous_act,
+      previous_bp = input$previous_bp,
       previous_date = input$previous_date,
       previous_date_text = NA,
       asthma_interpretive_statement = NA,
@@ -29,7 +29,7 @@ server <- function(input, output, session) {
         today_date = PT_VALUES_ASTHMA$today_date,
         today_act_score = PT_VALUES_ASTHMA$today_act,
         previous_date = PT_VALUES_ASTHMA$previous_date,
-        previous_act_score = PT_VALUES_ASTHMA$previous_act 
+        previous_bp_score = PT_VALUES_ASTHMA$previous_bp 
       )
     )
   })
@@ -54,7 +54,7 @@ server <- function(input, output, session) {
     
     arrow_g <- geom_score_arrows(base_g = base_g,
                                  today_act = PT_INFO()$today_act,
-                                 previous_act = PT_INFO()$previous_act,
+                                 previous_bp = PT_INFO()$previous_bp,
                                  previous_date = PT_INFO()$previous_date_text,
                                  language = PT_INFO()$language,
                                  x_breaks = arrow_x_all())

@@ -30,7 +30,7 @@ dashboardPage(
                 box(
                   width = 4,
                   dateInput("previous_date", label = h3("Previous date"), value = Sys.Date()),
-                  numericInput("previous_act", label = h3("Previous ACT"), value = 5),
+                  numericInput("previous_bp", label = h3("Previous ACT"), value = 5),
                 )
               ),
               fluidRow(
